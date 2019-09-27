@@ -1,0 +1,12 @@
+{
+    "name": "3.ES6",
+    "version": "1.0.0",
+    "description": "",
+    "main": "1.observer.js",
+    "scripts": {
+        "dev": "webpack-dev-server"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC"
+}
