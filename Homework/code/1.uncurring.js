@@ -75,4 +75,3 @@ let obj = {
 
 
 unCurrying(Toast.prototype.show)(obj);
-
