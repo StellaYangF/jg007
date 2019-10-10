@@ -23,5 +23,8 @@
 7. 实现new原理
 [MockNew](https://gitee.com/jw-speed/archive-7-homework/blob/master/%E6%9D%A8%E5%87%A1/7.new.principle.md)
 
-8. 尝试实现reduce方法 + 数组的扁平方法
+8. 尝试实现reduce方法
 [Array.prototype.reduce]()
+
+9. 使用reduce实现数组的扁平方法
+[flat]()

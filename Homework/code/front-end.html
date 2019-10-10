@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script>
+        let url = `http://localhost:3000/jsonp?callback=fn`;
+
+        let script = document.createElement("script");
+        script.src = url;
+        document.body.appendChild(script);
+        // fn({ name: "叶飞", age: 18 })
+        function fn(obj) {
+            console.log(obj);
+        }
+    </script>
+</body>
+
+</html>
