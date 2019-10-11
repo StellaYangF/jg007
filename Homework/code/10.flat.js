@@ -3,17 +3,22 @@ let isArray = obj => Array.isArray(obj);
 let flatArray = (flatArr, prev) => flatArr.concat(prev);
 
 Array.prototype.flat = function(n = 1) {
-  let flatArr = [], 
-      current = this;
-  // 判断是否 空数组
-  if ()
+  let flatArr = [];
 
-  // 返回扁平的数组
+  // 判断是否 空数组
+  if (!this.length) {
+    return flatArr;
+  }
+
+  this.reduce((prev, next, index, current) =>{
+    flatArr.concat(prev, next);
+  })
+
   return flatArr;
 };
 
 
-let arr = [ 1, [ 2, [ 3, [4, [5]]]]];
+let arr = [ 1, [ 2, [ 3, [4, [5]]]], 6];
 console.log(arr.flat(2));
 
 // arr.flat(Infinity); 
