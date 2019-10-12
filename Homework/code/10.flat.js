@@ -33,7 +33,7 @@ Array.prototype.flat = function(n = 1) {
   
   if(current == null) throw new Error('Cannot convert undefined or null to object');
 
-  if (n === 0 || !current.length) return current = [];
+  if (n === 0 || !current.length) return current;
 
   try {
     while(count++ < n) {
