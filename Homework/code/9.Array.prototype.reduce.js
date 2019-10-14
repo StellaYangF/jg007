@@ -1,7 +1,7 @@
 // reduce实现
 Array.prototype.reduce = function(callback, init) {
     // 初始化callback的四个参数
-    let prev, next, current = this;
+    let prev, next, index, current = this;
 
     // 判断是否传入callback
     if (!callback) throw new Error("undefined is not a function");
