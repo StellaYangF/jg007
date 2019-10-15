@@ -27,7 +27,8 @@ const currying = (fn, arr = []) => {
   let originLength = fn.length;
 
   return (...args) => {
-    arr = [...arr, ...args], currentLength = arr.length;
+    arr = [...arr, ...args];
+    let currentLength = arr.length;
     // merge two arguments
     return currentLength < originLength ? currying(fn, arr) : () => fn(...arr);
   }
@@ -84,3 +85,5 @@ let obj = {
 
 
 uncurrying(Toast.prototype.show)(obj);
+
+
