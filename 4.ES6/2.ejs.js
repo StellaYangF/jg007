@@ -19,10 +19,37 @@ function render(str, obj) {
 
   tail = '`\r\n}\r\n return str'
   let s = head + content + tail;
-  return new Function("name", s)(obj);
-}
+  return new Function("name", s)(obj); //立即执行函数IIFE： Imediately-Invoked Function Expression
+};
+let obj = { name: [1,2,3,4]};
 
-let res = render(str, {name: [1,2,3,4]});
+let res = render(str, obj);
 console.log(res);
 
 
+// 解析结果入如下
+res = (function (name) {
+  let str="";
+  with(name){
+  str = `
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+  </head>
+  <body>
+    ` 
+    name.forEach(item=>{ str+=`
+      <li>${item}</li>
+    `
+  })
+  str+=`
+  </body>
+  </html>`
+  }
+   return str
+
+}(obj))
