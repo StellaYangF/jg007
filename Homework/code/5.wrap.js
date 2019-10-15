@@ -19,15 +19,13 @@ p.then(()=>{},()=>{console.log("Error")});
 p.abort();
 // Error
 
-Promise.wrap = function (promise) {
-  let abort = null;
-  let res = null;
+// Review
+function wrap (promise) {
+  let dfd = {};
   let p = new Promise((resolve, reject) => {
-    // 两个状态函数均未执行，返回供外层自行决定成功 / 失败
-    res = resolve;
-    abort = reject;
+    dfd.reject = reject;
   })
-  p.abort = abort;
-  promise.then(res, abort);
-  return p;
+  let race = Promise.race([promise, p]);
+  race.abort = dfd.reject;
+  return race;
 }

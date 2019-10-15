@@ -48,3 +48,10 @@ let source = {
 let t = [1, 2, 3, 4];
 
 console.log(mergeOptions(target, source));
+
+// Review
+const mergeOptions = (target, source) => {
+  if(typeof target !== typeof source) return source;
+
+  if()
+}
