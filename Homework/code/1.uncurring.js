@@ -86,4 +86,3 @@ let obj = {
 
 uncurrying(Toast.prototype.show)(obj);
 
-
