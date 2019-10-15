@@ -59,6 +59,15 @@ console.log(toString([]));
 
 const unCurrying = fn => (...args) => fn.call(...args);
 
+// 优化uncurryig
+const uncurrying = fn => {
+  return (context, ...args) => {
+    // Function.prototype.apply.call(fn, context, args );
+    Reflect.apply(fn, context, args)
+  }
+}
+
+
 class Toast {
   constructor () {
     this.template = "template";
@@ -74,4 +83,4 @@ let obj = {
 }
 
 
-unCurrying(Toast.prototype.show)(obj);
+uncurrying(Toast.prototype.show)(obj);

@@ -54,6 +54,29 @@ Reflect.defineProperty(Promise, "race", {
   }
 })
 
+function isPromise(promise) {
+  if((typeof promise === "object" && promise !== null) || promise === "function") {
+    return typeof promise.then === "function";
+  }
+}
+
+// Review
+Promise.race = function(promises) {
+  return new Promise((resolve, reject) => {
+    try {
+      promises.forEach(data => {
+        if( isPromise(data)) {
+          data.then(resolve, reject);
+        }else {
+          resolve(data);
+        }
+      })
+    } catch (error) {
+      reject(error);
+    }
+  })
+}
+
 let p1 = new Promise(resolve => setTimeout(() => resolve("p1")));
 let p2 = "p2";
 let p3 = new Promise((resolve, reject) => setTimeout(() => resolve("p3")));
@@ -61,8 +84,7 @@ let pAll = Promise.all([ p1, p2, p3]);
 let pRace = Promise.race([ p1, p3, p2]);
 let { log } = console;
 
+pRace.then(log).catch(log);
+
 pAll.then(log).catch(log);
 // [ 'p1', 'p2', 'p3' ]
-
-pRace.then(log).catch(log);
-// p2

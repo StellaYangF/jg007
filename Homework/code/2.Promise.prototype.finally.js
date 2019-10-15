@@ -7,6 +7,14 @@ Promise.prototype.finally = function (callback) {
   )
 }
 
+
+// Review
+Promise.finally = function(callback) {
+  return this.then(
+    val => this.resolve(callback()).then( () => val ),
+    err => this.resolve(callback()).then( () => { throw err })
+  )
+}
 // test
 let p = new Promise(resolve => resolve("hello"));
 let p1 = new Promise((resolve, reject) => reject("Oops!"));
