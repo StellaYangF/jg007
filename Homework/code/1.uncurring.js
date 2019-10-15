@@ -86,3 +86,36 @@ let obj = {
 
 uncurrying(Toast.prototype.show)(obj);
 
+
+// 优化currying
+const curring = (fn,arr = [])=>{
+  let len = fn.length
+  return (...args)=>{
+      // arr保存了上一次传入的值 ，下面函数体内，不能再修改arr的值，否则会影响后面的参数 
+      // arr = [...arr, ...args];  
+      // 上述写法导致，arr的值会改变： arr = ["String"] => arr = [ "String", "hello", "3"]
+      args =  [...arr,...args]// [1]  [1,2,3] < 5
+      if(args.length < len){
+          return curring(fn,args)
+      }
+      console.log("arr: ", arr, "\r\nargs: ", args)
+      return fn(...args)
+  }
+}
+// let r = curring(add)(1)(2)(3)(4); // [1,2,3,4,5]
+// console.log(r);
+const checkType = (type, content) => {
+  return Object.prototype.toString.call(content) === `[object ${type}]`;
+};
+let types = ["Number", "String", "Boolean"];
+let utils = {};
+types.forEach(type => {
+  utils["is" + type] = curring(checkType)(type); // 先传入一个参数
+});
+console.log(utils.isString('hello'));
+console.log(utils.isString(3));
+
+return (...args) => {
+args = [ ...arr, ...args];
+return currying(fn, args);
+}

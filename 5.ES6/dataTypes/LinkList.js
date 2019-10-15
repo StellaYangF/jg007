@@ -16,7 +16,8 @@ class LinkList {
     if(!this.head) this.head = node;
     else {
       let current = this.head;
-      while (current.next) {
+      // 查找最后一个next，并指向为当前追加的element
+      while (current.next) { 
         current = current.next;
       }
       current.next = node;
@@ -44,9 +45,10 @@ class LinkList {
         node.next = current;
       }
       this.length ++;
-      return true;
+      // 插入成功 返回true
+      return true; 
     }
-    return false;
+    // 插入失败 返回false  
   }
 
   remove (position) {
