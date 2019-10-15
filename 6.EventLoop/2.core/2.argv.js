@@ -27,7 +27,7 @@ program
 program.parse(process.argv);
 // console.log(program.opts());
 
-process.env.bar = "bar";
+// process.env.bar = "bar";
 console.log(process.env.bar);
-// console.log(process.env);
+console.log(process.env);
 
