@@ -1,4 +1,9 @@
-module.exports.a = "hello";
+let a = {
+  name: "tom",
+  age: 18,
+  class: 2
+}
+module.exports.a = a;
 
 
 // return;

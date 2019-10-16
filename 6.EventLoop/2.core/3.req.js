@@ -55,5 +55,5 @@ function req(id) {
   return module.exports;
 }
 
-let str = require("./a");
-console.log(str);
+let {a} = require("./a");
+console.log(a);
