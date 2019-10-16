@@ -16,6 +16,11 @@ Module.extensions['.js'] = function (module) {
   fn.call(module.exports, module.exports, req, module, __dirname, module.id);
 }
 
+Module.extensions['.json'] = function (module) {
+  let script = fs.readFileSync(path.resolve(__dirname,module.id), "utf8");
+  module.exports = JSON.parse(script);
+}
+
 Module._resolveFilename = function (id) {
   let absPath = path.resolve(__dirname, id);
   if(fs.existsSync(absPath)) return absPath;
@@ -26,10 +31,9 @@ Module._resolveFilename = function (id) {
     let currentPath = absPath + ext;
     if (fs.existsSync(currentPath)) {
       return currentPath;
-    } else {
-      throw new Error(`no such file or directory, open '${currentPath}'`)
     }
   }
+  throw new Error(`no such file or directory, open '${currentPath}'`)
 }
 
 let wrapper = [
@@ -51,5 +55,6 @@ function req (id) {
   return module.exports;
 }
 
-let str = req("./a");
+// let str = req("./a");
+str = req("./c");
 console.log(str);
