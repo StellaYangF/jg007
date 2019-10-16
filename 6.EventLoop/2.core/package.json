@@ -11,5 +11,10 @@
   "license": "ISC",
   "dependencies": {
     "commander": "^3.0.2"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.6.4",
+    "@babel/core": "^7.6.4",
+    "@babel/preset-env": "^7.6.3"
   }
 }
