@@ -13,6 +13,7 @@ Module.extensions['.js'] = function (module) {
   let script = fs.readFileSync(path.resolve(__dirname,module.id), "utf8");
   let content = wrapper[0] + script + wrapper[1];
   let fn = vm.runInThisContext(content);
+  let __dirname = path.dirname(module.id);
   fn.call(module.exports, module.exports, req, module, __dirname, module.id);
 }
 
