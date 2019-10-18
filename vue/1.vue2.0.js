@@ -2,22 +2,39 @@
 // 数据变化了 可以更新视图
 let oldArrayPrototype = Array.prototype;
 let proto = Object.create(oldArrayPrototype); // 继承
-['push','shift','unshift'].forEach(method=>{
-    proto[method] = function(){ //函数劫持 把函数进行重写 内部 继续调用老的方法
-        updateView(); // 切片编程
+['push','shift','unshift',"pop", "splice", "slice", "sort"].forEach(method=>{
+    proto[method] = function(...args){ //函数劫持 把函数进行重写 内部 继续调用老的方法
+        switch(method) {
+          case "unshift":
+            inserted = args;
+            break;
+          case "push":
+            inserted = args;
+            break;
+          case "splice":
+            inserted = args.slice(2);
+            break;
+          default:
+            break;
+        };
+        updateView(); // 更新视图
+        arrayObserver(inserted);
         oldArrayPrototype[method].call(this,...arguments)
     }
 });
+
+function arrayObserver(array) {
+  array.forEach(item => observer(item));
+}
+
 function observer(target){
     if(typeof target !== 'object' || target == null){
         return target;
     }
     if(Array.isArray(target)){ // 拦截数组 给数组的方法进行了重写 
-        Object.setPrototypeOf(target,proto); // 写个循环 赋予给target
+        Object.setPrototypeOf(target,proto); 
         // target.__proto__ = proto;
-        for(let i = 0; i< target.length ;i++){
-            observer(target[i]);
-        }
+        arrayObserver(target);
     }else{
         for(let key in target){
             defineReactive(target,key,target[key]);
