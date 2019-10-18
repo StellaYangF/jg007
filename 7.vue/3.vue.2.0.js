@@ -1,5 +1,6 @@
 // vue2.0的数据劫持
 
+// get Array.prototype to avoid editing original Array.prototype
 let arrayPrototype = Array.prototype;
 let proto = Object.create(arrayPrototype);
 let arrayMethods = ["unshift", "shift", "push", "pop", "splice", "reverse", "splice"];
