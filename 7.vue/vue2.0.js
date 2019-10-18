@@ -1,21 +1,38 @@
 // 重写数组
 const oldArrayPrototye = Array.prototype;
 const proto = Object.create(oldArrayPrototye);
-["push", "shift", "unshift", "pop"].forEach(method => {
-  proto[method] = function() {
+["push", "shift", "unshift", "pop", "splice", "reverse", "sort"].forEach(method => {
+  proto[method] = function(args) {
+    let addedElement;
+    switch(method) {
+      case "push":
+        addedElement = args;
+        break;
+      case "unshift":
+        addedElement = args;
+        break;
+      case "splice":
+        addedElement = args.slice(2);
+        break;
+      default:
+        break;
+    }
+    arrayObserver(addedElement);
     updateView();
     oldArrayPrototye[method].call(this, ...arguments);
   }
 })
+
+function arrayObserver(array) {
+  array.forEach(item => observer(item));
+}
 
 function observer(target) {
   if (typeof target !=="object" || target == null) return target;
 
   if (Array.isArray(target)) {
     Object.setPrototypeOf(target, proto);
-    for (let i = 0; i< target.length; i++) {
-      observer(target[i]);
-    }
+    arrayObserver(target);
   } else {
     for(let key in target) {
       defineReactive(target, key, target[key]);
