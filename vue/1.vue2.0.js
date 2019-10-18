@@ -19,7 +19,7 @@ let proto = Object.create(oldArrayPrototype); // 继承
         };
         updateView(); // 更新视图
         arrayObserver(inserted);
-        oldArrayPrototype[method].call(this,...arguments)
+        oldArrayPrototype[method].call(this,...args)
     }
 });
 
