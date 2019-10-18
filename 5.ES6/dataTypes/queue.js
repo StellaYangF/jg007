@@ -1,4 +1,4 @@
-// 队列 先进后出
+// 栈 先进后出
 class Queue{
   constructor() {
     this.arr = [];
@@ -9,7 +9,16 @@ class Queue{
   }
 
   dequeue() {
-    this.arr.shift();
+    return this.arr.shift();
   }
 }
+
+
+let queue =  new Queue();
+
+queue.enqueue(1);
+queue.enqueue(2);
+queue.dequeue();
+// 数组会根其下标重新排序
+
 
