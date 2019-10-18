@@ -9,7 +9,7 @@ class Queue{
   }
 
   dequeue() {
-    return this.arr.shift();
+    return this.arr.shift();gi 
   }
 }
 
