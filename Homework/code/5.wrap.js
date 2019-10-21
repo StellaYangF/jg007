@@ -29,3 +29,14 @@ function wrap (promise) {
   race.abort = dfd.reject;
   return race;
 }
+
+let result = wrap(new Promise(resolve => {
+  setTimeout(() => {
+    resolve("hello");
+  },3000);
+}));
+
+setTimeout(() => {
+  result.abort("失败");
+}, 1000);
+result.then(console.log, console.log);
