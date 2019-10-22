@@ -34,6 +34,6 @@ mount(oldVnode, root);
 //DOM节点为替换成了文本节点
 //DOMDIFF 如果老节点和新的节类型不一样的话，直接把老的替换成新的
 
-setTimeout(function () {
+setTimeout(function() {
     patch(oldVnode, newVnode);
 }, 1000);

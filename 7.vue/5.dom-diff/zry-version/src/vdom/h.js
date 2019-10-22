@@ -1,8 +1,9 @@
 import vnode from './vnode';
 const hasOwnProperty = Object.prototype.hasOwnProperty;
+
 function h(type, config, ...children) {
-    const props = {};//属性对象
-    let key;//我已经把config中的key传给了key
+    const props = {}; //属性对象
+    let key; //我已经把config中的key传给了key
     if (config) {
         if (config.key) {
             key = config.key;
