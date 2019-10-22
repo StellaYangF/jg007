@@ -53,3 +53,8 @@ res = (function (name) {
    return str
 
 }(obj))
+
+// regExp Review正则表达式 复习
+// '<span><%=data.list[i]%></span>'.match(/<%=(.+?)%>/)
+
+// '<span><%=data.list[i]%></span>'.match(/<%=([\s\S]+?)%>/)
