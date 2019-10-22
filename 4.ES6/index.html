@@ -5,10 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
+  <style>
+    ul { list-style: none; width: 400px; margin: 20px auto !important; box-shadow: 0 0 20px 0 rgba(0, 0, 0, .2); border-radius: 10px;  }
+    ul li { padding: 30px; text-align: center; }
+    li:first-child { border-bottom: 1px dotted #ccc; }
+  </style>
 </head>
 <body>
-  <%name.forEach(item=>{%>
-    <li><%=item%></li>
-  <%})%>
+  <ul>
+    <%name.forEach(item=>{%>
+      <li><%=item%></li>
+    <%})%>
+  </ul>
 </body>
 </html>
