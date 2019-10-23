@@ -9,7 +9,7 @@ export function isVnode(vnode) {
 }
 
 
-export function vnode(type, key, props = {}, chdildren = [], text, domElement) {
+export function vnode(type, key, props = {}, children = [], text, domElement) {
     return {
         _type: VNODE_TYPE,
         type,
