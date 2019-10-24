@@ -1,9 +1,9 @@
 <template>
   <li>
-    <span @click="change">
-      {{prefix}}
+    <div @click="change">
+      <span class="prefix">{{prefix}}</span>
       <slot name="title"></slot>
-    </span>
+    </div>
     <ul v-if="isShow">
       <slot></slot>
     </ul>
@@ -30,7 +30,16 @@ export default {
 }
 </script>
 <style scoped>
-  li {
+  li, div {
     padding: 10px;
+  }
+  div:hover {
+    background: #F4F6F9;
+  }
+  .prefix {
+    padding: 0 10px;
+    display: inline-block;
+    width: 40px;
+    box-sizing: border-box;
   }
 </style>
