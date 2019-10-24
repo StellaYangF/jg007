@@ -86,6 +86,7 @@ const installModule = (store,rootState,path,rootModule)=>{
 }
 class Store {
     constructor(options = {}){
+        debugger;
         // 将用户的状态放到了store中
         this.s = new Vue({ // 核心 定义了响应式变化 数据更新 更新视图
             data(){
