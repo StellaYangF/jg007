@@ -9,15 +9,12 @@ let getInstance = () => {
   document.body.appendChild(instance.$el);
 }
 
-
 const Message = {
   success(options) {
     !instance && getInstance();
     instance.$children[0].add(options);
   }
 }
-
-
 
 export {
   Message,
