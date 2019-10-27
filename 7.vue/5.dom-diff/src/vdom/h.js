@@ -15,7 +15,11 @@ function h(type, config, ...children) {
         }
     }
 
-    return vnode(type, key, props, children.map((child, index) => (typeof child == "string" || typeof child == "number" ? vnode(undefined, undefined, undefined, undefined, child) : child)));
+    return vnode(type, key, props, children.map( child => (
+      typeof child == "string" || typeof child == "number" ? 
+        vnode(undefined, undefined, undefined, undefined, child) : 
+        child
+      )));
 }
 
 export default h;

@@ -1,33 +1,34 @@
 <template>
   <div class="message-contianer">
-    <div v-for="layer in layers" :key="layer.id" class="message-item">
-      {{layer.message}} {{layer.id }}
-    </div>
+    <div v-for="layer in layers" :key="layer.id" class="message-item">{{layer.message}}</div>
   </div>
 </template>
+
 <script>
 export default {
-  data() {
-    return { layers:[] }
-  },
-  mounted() {
-    this.id = 0;
+  name: "dialog-item",
+  data(){
+    return {
+      layers: [],
+      id: 0,
+      durationDedault: 1000,
+    }
   },
   methods: {
     add(options) {
-    let layer =  { ...options, id: ++this.id };
-    this.layers.push(layer);
-    layer.timer = setTimeout(() => {
-      this.remove(layer);
-    }, options.duration);
-  },
-  remove(layer) {
-    clearTimeout(layer.timer);
-    this.layers = this.layers.filter(item => layer.id !== item.id);
-  }
+      let layer = { ...options, id: this.id++};
+      this.layers.push(layer);
+      layer.timer = setTimeout(() => {
+        this.remove(layer);
+      }, layer.duration || this.durationDedault);
+    },
+    remove(layer) {
+      this.layers = this.layers.filter(item => item.id !== layer.id);
+    }
   }
 }
 </script>
+
 <style >
   .message-contianer {
     position: fixed;
@@ -42,6 +43,5 @@ export default {
     margin-top: 20px;
     border-radius: 6px;
     padding: 10px 20px;
-    /* box-shadow: 0 0 20px 0 rgba(0,0,0,.2); */
   }
 </style>

@@ -1,8 +1,10 @@
-import Vue from 'vue';
-import App from './App';
+import Vue from "vue";
+import App from "./App";
+import Message from "./Message";
 
+Vue.use(Message);
 
 new Vue({
-  el: "#app",
-  render: h => h(App),
-})
+  name:"root",
+  render: h=> h(App),
+}).$mount("#app");
