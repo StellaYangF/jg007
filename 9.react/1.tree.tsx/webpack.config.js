@@ -10,7 +10,7 @@ module.exports = {
   },
   devtool: "source-map",
   devServer: {
-    hot: true,
+    // hot: true,
     contentBase: path.join(__dirname, "dist"),
     historyApiFallback: {
       index: "./index.html"
@@ -40,7 +40,6 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: "./src/index.html"
-    }),
-    new webpack.HotModuleReplacementPlugin()
-  ],
+    })
+  ]
 }
