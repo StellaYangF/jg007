@@ -1,7 +1,6 @@
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
-
 module.exports = {
   mode: "development",
   entry: "./src/index.tsx",
@@ -10,7 +9,7 @@ module.exports = {
   },
   devtool: "source-map",
   devServer: {
-    // hot: true,
+    hot: true,
     contentBase: path.join(__dirname, "dist"),
     historyApiFallback: {
       index: "./index.html"
@@ -21,25 +20,31 @@ module.exports = {
   },
 
   module: {
-    rules: [{
-      test: /\.tsx?$/,
-      loader: "ts-loader",
-    }, {
-      enforce: "pre",
-      test: /\.tsx$/,
-      loader: "source-map-loader",
-    }, {
-      test: /\.less$/,
-      use: ["style-loader", "css-loader", "less-loader"],
-    }, {
-      test: /\.(jpg|png|gif|svg)$/,
-      loader: "url-loader",
-    }]
+    rules: [
+      {
+        test: /\.tsx?$/,
+        loader: "ts-loader"
+      },
+      {
+        enforce: "pre",
+        test: /\.tsx$/,
+        loader: "source-map-loader"
+      },
+      {
+        test: /\.less$/,
+        use: ["style-loader", "css-loader", "less-loader"]
+      },
+      {
+        test: /\.(jpg|png|gif|svg)$/,
+        loader: "url-loader"
+      }
+    ]
   },
 
   plugins: [
     new HtmlWebpackPlugin({
       template: "./src/index.html"
-    })
+    }),
+    new webpack.HotModuleReplacementPlugin()
   ]
-}
+};
