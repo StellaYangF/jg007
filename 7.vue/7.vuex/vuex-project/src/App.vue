@@ -7,8 +7,8 @@
      <button @click="add">按钮</button>
 
       <button @click="minus">异步减少</button>
-  {{this.$store.getters.computedC}}
-  {{this.$store.state.a.a}}
+      <p>computedC: {{this.$store.getters.computedC}}</p>
+      <p>module a: {{this.$store.state.a.a}}</p>
   </div>
 </template>
 
