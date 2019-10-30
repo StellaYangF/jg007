@@ -1,8 +1,10 @@
 <template>
   <div id="app">
-    叶飞今年{{$store.state.age}}岁啦！
-    十年後，叶飞{{$store.getters.myAge}}岁啦！
+   I am <span class='age'>{{$store.state.age}}</span> years old!
+   <br>
+    Ten years later, I'll be <span class='age two'>{{$store.getters.myAge}}</span>.
     <br>
+    <p>{{$store.state}}</p>
     <button @click='add'>add</button>
     <button @click='minus'>async minus</button>
   </div>
@@ -35,5 +37,13 @@ export default {
     box-shadow: 0 0 20px 0 rgba(0,0,0,0.2);
     border-radius: 5px;
     padding: 40px;
+  }
+  .age {
+    color: red;
+    font-size: 24px;
+    font-weight: bolder;
+  }
+  .age.two {
+    color: blueviolet;
   }
 </style>

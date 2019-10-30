@@ -1,17 +1,30 @@
 import Vue from 'vue'
-import Vuex from 'vuex'
-// import Vuex from './vuex'
+// import Vuex from 'vuex'
+import Vuex from './vuex'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-    modules: {
-        a: {
-            state: { a: 1 }
-        },
-        b: {
-            state: { b: 2 }
+    modules:{
+      a:{
+        state:{a:1},
+        modules:{
+          c:{
+            getters:{ 
+              computedC(state){ 
+                return state.c + 100;
+              }
+            },  
+            state:{c:1},
+            mutations:{
+              syncAdd(state,payload){ 
+                console.log('add');
+              }
+            }
+          }
         }
+      },
+      b:{ state:{b:1} }
     },
     state: {
         age: 10,
@@ -37,6 +50,5 @@ export default new Vuex.Store({
             }, 1000);
 
         }
-    },
-    modules: {}
+    }
 })
