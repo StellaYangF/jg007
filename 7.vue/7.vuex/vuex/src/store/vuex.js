@@ -34,7 +34,7 @@ const forEach = (obj, cb) => {
 /**
  * 注册状态信息
  * @param {*Store} store Store实例
- * @param {*Object} rootState 根状态对象
+ * @param {*Object} rootState store.state根状态对象
  * @param {*Array} path 子模块数组
  * @param {*Object} rootModule 当前模块的对象
  */
