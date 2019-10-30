@@ -31,57 +31,6 @@ const forEach = (obj, cb) => {
   });
 };
 
-/**
- * 注册状态信息
- * @param {*Store} store Store实例
- * @param {*Object} rootState store.state根状态对象
- * @param {*Array} path 子模块数组
- * @param {*Object} rootModule 当前模块的对象
- */
-const installModule = (store, rootState, path, rootModule) => {
-  if (path.length > 0) {
-    let parent = path.slice(0, -1).reduce((root, current) => {
-      return root[current]
-    }, rootState);
-    Vue.set(parent, path[path.length - 1], rootModule.state);
-
-  }
-
-  let getters = rootModule._rawModule.getters;
-  let mutations = rootModule._rawModule.mutations;
-  let actions = rootModule._rawModule.actions;
-  
-  if (getters) {
-    forEach(getters, (type, fn) => {
-      Object.defineProperty(store.getters, type, {
-        get: () => fn(rootModule.state)
-      })
-    })
-  }
-  if (mutations) {
-    forEach(mutations, (type, fn) => {
-      let mutations = store._mutations[type] || [];
-      mutations.push(payload => {
-        fn(rootModule.state, payload);
-      })
-      store._mutations[type] = mutations;
-    })
-  }
-  if (actions) {
-    forEach(actions, (type, fn) => {
-      let actions = store._actions[type] || [];
-      actions.push(payload => {
-        fn(store, payload);
-      })
-      store._actions[type] = actions;
-    })
-  }
-
-  forEach(rootModule._children, (moduleName, module) => {
-    installModule(store, rootState, path.concat(moduleName), module);
-  })
-}
-
 class ModuleCollection {
   constructor(options) {
     this.register(options);
@@ -112,44 +61,75 @@ class ModuleCollection {
 
 class Store {
   constructor(options = {}) {
-    this.s = new Vue({
+    this._vm = new Vue({
       data() {
         return { state: options.state };
       }
-    }); //維護全局數據
+    });
     this.getters = {};
     this._mutations = {};
     this._actions = {};
     this._subscribes = [];
     this._modules = new ModuleCollection(options);
-    installModule(this, this.state, [], this._modules.root);
+    this.registerModule(this, this.state, [], this._modules.root);
 
-    // let getters = {};
-    // forEach(getters, (getterName, fn) => {
-    //     Object.defineProperty(this.getters, getterName, {
-    //         get: () => fn(this.state)
-    //     })
-    // });
-    // Object.keys(getters).forEach(getterName => {
-    //     Object.defineProperty(this.getters, getterName, {
-    //         get: () => {
-    //             return getters[getterName](this.state);
-    //         }
-    //     })
-    // });
+    options.plugins.forEach(plugin => plugin(this));
 
-    // let mutations = options.mutations;
-    // forEach(mutations, (mutationName, fn) => {
-    //     this.mutations[mutationName] = payload => fn(this.state, payload);
-    // });
-    // Object.keys(mutations).forEach(mutationName => this.mutations[mutationName] = payload => {
-    //     mutations[mutationName](this.state, payload);
-    // })
+  }
 
-    // let actions = options.actions;
-    // forEach(actions, (actionName, fn) => {
-    //     this.actions[actionName] = payload => fn(this, payload);
-    // });
+  subscribe = fn => {
+    this._subscribes.push(fn);
+  }
+
+  /**
+ * 注册状态信息
+ * @param {*Store} store Store实例
+ * @param {*Object} rootState store.state根状态对象
+ * @param {*Array} path 子模块数组
+ * @param {*Object} rootModule 当前模块的对象
+ */
+  registerModule = (store, rootState, path, rootModule) => {
+    if (path.length > 0) {
+      let parent = path.slice(0, -1).reduce((root, current) => {
+        return root[current]
+      }, rootState);
+      Vue.set(parent, path[path.length - 1], rootModule.state);
+  
+    }
+  
+    let getters = rootModule._rawModule.getters;
+    let mutations = rootModule._rawModule.mutations;
+    let actions = rootModule._rawModule.actions;
+    
+    if (getters) {
+      forEach(getters, (type, fn) => {
+        Object.defineProperty(store.getters, type, {
+          get: () => fn(rootModule.state)
+        })
+      })
+    }
+    if (mutations) {
+      forEach(mutations, (type, fn) => {
+        let mutations = store._mutations[type] || [];
+        mutations.push(payload => {
+          fn(rootModule.state, payload);
+        })
+        store._mutations[type] = mutations;
+      })
+    }
+    if (actions) {
+      forEach(actions, (type, fn) => {
+        let actions = store._actions[type] || [];
+        actions.push(payload => {
+          fn(store, payload);
+        })
+        store._actions[type] = actions;
+      })
+    }
+  
+    forEach(rootModule._children, (moduleName, module) => {
+      this.registerModule(store, rootState, path.concat(moduleName), module);
+    })
   }
 
   dispatch = (type, payload) => {
@@ -161,8 +141,14 @@ class Store {
     // 源码变量 控制 是否 是通过 mutation来更新状态
     this._mutations[type].forEach(fn => fn(payload));
   };
+
+  /**
+   * 实现响应式数据
+   * @readonly
+   * @memberof Store
+   */
   get state() {
-    return this.s.state;
+    return this._vm.state;
   }
 }
 
