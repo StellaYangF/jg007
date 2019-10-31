@@ -1,19 +1,45 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
+    <div id="container">
     <router-view/>
+    </div>
+    <div class="fotter">
+      <cube-tab-bar
+        v-model='selectedLabelDefault'
+        :data="tabs"
+        @change='changeHanlder'
+      ></cube-tab-bar>
+    </div>
   </div>
 </template>
 
+<script>
+export default {
+  data() {
+    return {
+      selectedLabelDefault: "/",
+      tabs: [
+        { label: 'Home', value: '/', icon: 'iconfont icon-duoyun'},
+        { label: 'courses', value: '/course', icon: 'iconfont icon-react'},
+        { label: 'admin', value: '/profile', icon: 'iconfont icon-xiaolian'},
+      ]
+    }
+  },
+  watch: {
+    $route: {
+      handler(to, from) {
+        this.selectedLabelDefault = to.path;
+      },
+      immediate: true,
+    }
+  },
+  methods: {
+    changeHanlder(label) {
+      this.$router.push(label);
+    }
+  }
+}
+</script>
+
 <style lang="stylus">
-#app
-  font-family 'Avenir', Helvetica, Arial, sans-serif
-  -webkit-font-smoothing antialiased
-  -moz-osx-font-smoothing grayscale
-  text-align center
-  color #2c3e50
-  margin-top 60px
 </style>
