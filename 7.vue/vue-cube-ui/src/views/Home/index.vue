@@ -1,5 +1,29 @@
 <template>
   <div class="home">
-    Home
+    <HomeHeader :categories='categories' @change='change'></HomeHeader>
   </div>
 </template>
+<script>
+import { createNamespacedHelpers } from 'vuex';
+import HomeHeader from './HomeHeader.vue';
+import * as types from '@/store/actions-type';
+
+const { mapActions, mapState } = createNamespacedHelpers('home');
+export default {
+  components: {
+    HomeHeader,
+  },
+  computed: {
+    ...mapState(['categories']),
+  },
+  methods: {
+    change(value) {
+      console.log(value[0]);
+    },
+    ...mapActions([types.SET_CATEGORIES]),
+  },
+  mounted() {
+    this[types.SET_CATEGORIES]();
+  },
+};
+</script>

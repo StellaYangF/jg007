@@ -12,7 +12,7 @@ const routes = [
     component: Home,
   },
   {
-    path: '/couse',
+    path: '/course',
     name: 'course',
     component: loadable(() => import('@/views/Course/index.vue')),
   },
