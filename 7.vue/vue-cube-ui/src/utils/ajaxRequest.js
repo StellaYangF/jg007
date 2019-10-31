@@ -18,7 +18,6 @@ class AjaxRequest {
         this.toast.show();
       }
       this.queue[url] = url;
-      console.log(config);
       return config;
     }, err => Promise.reject(err));
     instance.interceptors.response.use((res) => {
@@ -27,7 +26,6 @@ class AjaxRequest {
         this.toast.hide();
       }
       if (res.data.code === 0) {
-        console.log(res.data.data);
         return res.data.data;
       }
       return false;
