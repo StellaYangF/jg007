@@ -6,7 +6,7 @@
 <script>
 import { createNamespacedHelpers } from 'vuex';
 import HomeHeader from './HomeHeader.vue';
-import * as types from '@/store/actions-type';
+import types from '@/store/actions-type';
 
 const { mapActions, mapState } = createNamespacedHelpers('home');
 export default {
@@ -24,6 +24,7 @@ export default {
   },
   mounted() {
     this[types.SET_CATEGORIES]();
+    // this.$store.dispatch(`/home/${types.SET_CATEGORIES}`);
   },
 };
 </script>
