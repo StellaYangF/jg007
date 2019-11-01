@@ -4,24 +4,6 @@ import { Toast } from 'cube-ui';
 const PRODUCTION = 'production';
 const DEV_BASE_URL = 'http://localhost:3000/api';
 const PRO_BASE_URL = '/';
-let isResponseInterceptor = false;
-const toggleLoading = (data, ajaxInsance, url) => {
-  const ctx = ajaxInsance;
-  if (isResponseInterceptor) {
-    if (ctx.queue.length === 0) {
-      ctx.toast.show();
-    }
-    ctx.queue[url] = url;
-    return data;
-  } else {
-    delete ctx.queue[url];
-    if (ctx.queue.length === 0) {
-      ctx.toast.hide();
-      return data;
-    }
-   return false;
-  }
-};
 
 class AjaxRequest {
   constructor() {
@@ -36,14 +18,20 @@ class AjaxRequest {
 
   setInterceptors(instance, url) {
     instance.interceptors.request.use((config) => {
-      isResponseInterceptor = true;
-      toggleLoading(config, this, url);
+      if (this.queue.length === 0) {
+        this.toast.show();
+      }
+      this.queue[url] = url;
+      return config;
     }, err => Promise.reject(err));
 
     instance.interceptors.response.use((res) => {
-      isResponseInterceptor = false;
+      delete this.queue[url];
       if (this.queue.length === 0) {
-        this.toast.show();
+        this.toast.hide();
+      }
+      if (res.data.code === 0) {
+        return instance(res);
       }
     }, err => Promise.reject(err));
   }
