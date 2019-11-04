@@ -140,7 +140,7 @@ class Store {
         // this.mutations[mutationName](payload)
     }
     dispatch =(actionName,payload)=>{
-        this.actions[actionName](payload); //源码里有一个变量 来控制是否是通过mutation 来更新状态的
+        this.actions[actionName].forEach(fn => fn(payload)); //源码里有一个变量 来控制是否是通过mutation 来更新状态的
     }
     get state(){ // 类的属性访问器
         return this.s.state
