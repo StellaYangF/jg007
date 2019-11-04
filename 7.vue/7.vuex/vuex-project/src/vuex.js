@@ -15,6 +15,8 @@ const install = _vue => {
   })
 };
 
+const installModule = () => {};
+
 class Store{
   constructor(options) {
     this._vm = new Vue({
@@ -22,9 +24,13 @@ class Store{
         return { state: options.state };
       }
     })
-    this.mutations = {};
-  
-    utils.forEach(options.mutations, (type, fn) => this.mutations[type] = payload => fn(this.state, payload));
+    this._getters = {};
+    this._mutations = {};
+    this._actions = {};
+    this._subscribes = [];
+    this._modules = new ModuleCollection(options);
+
+    installModule(this, this.state, [], this._modules.root);
   }
 
   get state() {
@@ -32,12 +38,41 @@ class Store{
   }
 
   commit(type, payload) {
-    this.mutations[type](payload);
+    this.mutations[type].forEach(fn => fn(payload));
+  }
+
+  dispatch(type, payload) {
+    this.actions[type].forEach(fn => fn(payload));
+  }
+
+  subscribe(fn) {
+    this._subscribes.push(fn);
   }
 
 }
 
-class ModuleCollection{}
+class ModuleCollection{
+  constructor(options) {
+    this.register([], options);
+  }
+
+  register(path, currentRootModule) {
+    let module = {
+      _rawModule: currentRootModule,
+      _children : [],
+      state: currentRootModule.state,
+    };
+    if (path.length == 0) {
+      this.root = module;
+    } else {
+      let parent = path.silce(0, -1).reduce((root, current) => root._children[current], this.root);
+      parent._children[path[path.length - 1]] = module;
+    }
+    if (currentRootModule.modules) {
+      forEach(currentRootModule.modules, (moduleName, module) => this.register(path.concat(moduleName), module));
+    }
+  }
+}
 
 
 export default {

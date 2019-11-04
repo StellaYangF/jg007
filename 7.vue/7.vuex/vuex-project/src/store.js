@@ -14,6 +14,10 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    
+    ADD_AGE(store, payload) {
+      setTimeout(() => {
+        store.commit(ADD_AGE, payload);
+      }, 1000);
+    }
   }
 });

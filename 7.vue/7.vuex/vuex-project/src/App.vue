@@ -3,6 +3,7 @@
     <h4>vuex test</h4>
     <p>Tom is <span class='age'>{{$store.state.age}}</span> years old.</p>
     <button @click='addAge'>Add</button>
+    <button @click='asyncAddAge'>Async Add</button>
 
     <h4>custom-directives</h4>
     <div v-click-outside:[direction].foo="change" class="test">
@@ -28,6 +29,10 @@ export default {
 
     addAge() {
       this.$store.commit(ADD_AGE, 2);
+    },
+
+    asyncAddAge() {
+      this.$store.dispatch(ADD_AGE, 3);
     }
   }
 };
