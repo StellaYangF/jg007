@@ -1,7 +1,6 @@
 let Vue;
 
 const install = _vue => {
-  console.log(_vue);
   Vue = _vue;
   Vue.mixin({
     beforeCreate() {
