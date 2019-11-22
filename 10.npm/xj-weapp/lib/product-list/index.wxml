@@ -1,0 +1,20 @@
+<view class="xj-list" hidden='{{hidden}}'>
+    <block>
+        <view wx:for="{{list}}" wx:key='{{index}}' class="xj-item-contianer">
+            <view class='xj-list-item {{ item.isPublish == 1 && "inactive" || ""}}'>
+              <view class="list-img" bindtap='jump' data-index='{{index}}' data-state="{{item.isPublish}}">
+                  <image src="{{item.imgUrl}}" class="list-img-view" mode='aspectFill' lazy-load='true' />
+              </view>
+              <view class="list-content">
+                  <text class='list-item-title' bindtap='jump' data-index='{{index}}' data-state="{{item.isPublish}}">{{item.title}}</text>
+                  <view class='list-item-subtitle' wx:if='{{item.subName}}'>
+                      <text>{{item.subName}} </text>
+                  </view>
+              </view>
+            </view>
+            <view class="xj-delete-item"  bind:tap='cancel' data-index='{{index}}'>
+              删除
+            </view>
+        </view>
+    </block>
+</view>

@@ -1,0 +1,21 @@
+<view 
+  wx:for='{{list}}'
+  wx:key='{{index}}'
+  class='type_item flex'>
+  <view class='type_item_right'>
+    <text>{{item.type}}:</text>
+    <text class='type_item_right' wx:if='{{item.title}}'>{{item.title}}</text>
+    <text class='type_item_right_price' wx:if='{{item.price}}'>¥ {{item.price}}/人</text>
+  </view>
+  <van-stepper 
+    data-item='{{item}}'
+    data-index='{{index}}'
+    value="{{ item.count }}" 
+    bind:change="onChange" 
+    custom-class='custom_van_stepper'
+    input-class='custom_input'
+    minus-class='custom_btn'
+    plus-class='custom_btn'
+    wx:if='{{item.count}}'
+  />
+</view>

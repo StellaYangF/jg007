@@ -1,0 +1,29 @@
+<view 
+  class='buyerComment_item custom-class'
+  wx:for='{{list}}'
+  wx:key='{{index}}'
+  hidden='{{hidden}}'>
+  <image 
+    src='{{item.memberImg}}'
+    class='buyerComment_item_avatar'
+    wx:if='{{!!item.memberImg}}'
+  />
+  <view class='buyerComment_item_right {{item.memberImg ? "" : "ml-0"}}'>
+    <view class='buyerComment_item_name header-class'>
+      <view class='buyerComment_item_name_title'>
+        <text>{{item.memberName}}</text>
+      </view>
+      <navigator        
+        url='{{item.id}}'
+        custom-class='arrow-icon'
+      >        
+      </navigator>
+    </view>
+    <view class='buyerComment_item_date pl-4'>{{item.commentTime}}</view>
+    <view class='buyerComment_item_comment pl-4'>
+      <view 
+        class='buyerComment_item_comment_content'
+      >{{item.commentDesc}}</view>
+    </view>
+  </view>
+</view>

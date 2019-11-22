@@ -1,0 +1,18 @@
+<view class='buyerComment_item custom-class {{ item.isPublish == 1 && "inactive" || ""}}' wx:for='{{list}}'
+    wx:key='{{index}}' hidden='{{hidden}}'>
+    <image src='{{item.imgUrl}}' class='buyerComment_item_avatar' wx:if='{{item.imgUrl != null && item.imgUrl != ""}}' mode='aspectFill' />
+    <view class='buyerComment_item_right {{item.imgUrl ? "" : "ml-0"}}'>
+        <view class='buyerComment_item_name one header-class'>
+            <view class='buyerComment_item_name_title'>{{item.proName}}</view>
+            <block>
+                <view bindtap='jump' data-index="{{index}}" data-state="{{item.isPublish}}" custom-class='arrow-icon'>
+                    <van-icon name='arrow' />
+                </view>
+            </block>
+        </view>
+        <view class='buyerComment_item_date pl-4'>{{item.commentTime}}</view>
+        <view class='buyerComment_item_comment pl-4'>
+            <view class='buyerComment_item_comment_content'>{{item.commentDesc}}</view>
+        </view>
+    </view>
+</view>

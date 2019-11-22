@@ -1,0 +1,7 @@
+.van-info {
+  font-size: 24rpx;
+}
+
+.van-info.title {
+  color: #1AAD19;
+}

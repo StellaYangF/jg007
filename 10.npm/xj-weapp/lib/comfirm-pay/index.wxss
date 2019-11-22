@@ -1,0 +1,98 @@
+.xj-confirm {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+.xj-comfirm-cover {
+  background: rgba(0,0,0,.7);
+  width: 100%;
+  height: 100%;
+  z-index:1000;
+  top: 0;
+}
+
+.xj-comfirm-container {
+  background: #fff;
+  position: fixed;
+  padding-bottom: 200rpx;
+  bottom: 0;
+  width: 100%;
+  z-index: 1111;
+}
+
+.xj-comfirm-header {
+    position: relative;
+    padding: 20rpx 32rpx;
+}
+
+.xj-comfirm-header-close-button {
+  position: absolute;
+  font-size: 40rpx;
+  color:#9A9A9A;
+}
+
+.xj-comfirm-header-title {
+  text-align: center;
+  font-size: 32rpx;
+}
+
+.xj-comfirm-content-money {
+  font-size: 60rpx;
+  font-weight: bold;
+  text-align: center;
+  padding:60rpx 0 80rpx 0;
+}
+
+.xj-comfirm-content-pay-type {
+  padding: 0 0 16rpx 32rpx;
+}
+
+.xj-comfirm-content-pay-info {
+  display: flex;
+  padding: 24rpx 32rpx;
+}
+
+.xj-comfirm-content-pay-info-img {
+  width: 56rpx;
+  height: 56rpx;
+  margin-right: 35rpx;
+}
+
+.xj-comfirm-footer {
+  position: absolute;
+  bottom: 0;
+  padding: 0 32rpx 30rpx 32rpx;
+  width: 100%;
+  box-sizing: border-box;
+  outline: none;
+}
+
+.xj-button-green {
+  background: #08a948;
+  color: #fff;
+  border: none;
+}
+
+/* general style */
+.xj-comfirm-content-money, 
+.xj-comfirm-header-title,
+.xj-comfirm-content-pay-type,
+xj-comfirm-content-pay-info-title {
+  color: #333;
+}
+
+.xj-comfirm-header, 
+.xj-comfirm-content-pay-type,
+.xj-comfirm-content-pay-info  {
+    border-bottom: 1rpx solid #eee;
+}
+
+/* controls show and hide */
+.hide {
+  display: none;
+}
+
+.show {
+  display: fixed;
+}

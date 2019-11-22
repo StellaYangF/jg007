@@ -1,0 +1,43 @@
+<!-- cover -->
+<view class='xj-confirm {{ showConfirm ? "show" : "hide" }}'>
+  <view class='xj-comfirm-cover xj-cover-class'></view>
+  <!-- container -->
+  <view class='xj-comfirm-container'>
+  <!-- header -->
+    <view class='xj-comfirm-header'>
+      <text 
+        class='xj-comfirm-header-close-button'
+        bindtap='handleCloseButton'
+      >×</text>
+      <view class='xj-comfirm-header-title'>确认支付</view>
+    </view>
+    <!-- content -->
+    <view class='xj-comfirm-content'>
+      <view class='xj-comfirm-content-money'>¥ {{comfirmMoney}}</view>
+      <view class='xj-comfirm-content-pay-type'>支付方式</view>
+      <view class='xj-comfirm-content-pay-info'>
+        <image 
+          src='/components/img/wechat.png'
+          class='xj-comfirm-content-pay-info-img'
+        ></image>
+        <text class='xj-comfirm-content-pay-info-title'>微信</text>
+      </view>
+    </view>
+    <!-- footer -->
+    <view class='xj-comfirm-footer'>
+      <button 
+        class='xj-button-green'
+      >
+        确认支付 ¥ {{comfirmMoney}}
+      </button>
+    </view>
+  </view>
+</view>
+
+<!------------------------------------------------------ Tip -------------------------------------------------------->
+<!-- 
+This style must be imported
+.comfirm-pay {
+  position: fixed;
+} 
+-->

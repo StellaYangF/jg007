@@ -1,0 +1,4 @@
+<view class='xj-submit-bar'>
+    <view class='xj-middle left'>合计：<text class='xj-price'>¥{{sum}}</text></view>
+    <button size='mini' type='primary' bindtap='onsubmit' class='xj-btn'>提交订单</button>
+</view>

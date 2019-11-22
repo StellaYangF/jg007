@@ -1,0 +1,85 @@
+<view class='xj-card-item' wx:for='{{list}}' wx:key='{{index}}'>
+    <view class='xj-card-header'>
+      <text>{{item.time}}</text>
+      <text class='xj-card-header-right' wx:if='{{item.tip}}'>{{item.tip}}</text>
+    </view>
+    <view 
+      class='xj-card-body'
+      wx:for='{{item.subOrderList}}'
+      wx:key='{{index}}'>
+    <image src='{{item.img}}' class='xj-card-body-img'/>
+    <view class='xj-card-body-content'>
+      <view>{{item.title}}</view>
+      <view class='xj-card-body-subtitle'wx:if='{{item.subtitle}}'>{{item.subtitle}}</view>
+      <view 
+        class='xj-card-body-subtitle'
+        wx:if='{{item.price}}'
+      >单价：{{item.price}}元/箱</view>
+      <text class='xj-card-body-count'> x {{item.count}} </text>
+    </view>
+  </view>
+  <view class='xj-card-append'>
+    <text class='xj-card-append-count'>合计： 共{{item.totalCount}}件</text>
+    <text class='xj-card-append-sum'>¥ {{item.totalMoney}}</text>
+  </view>
+  <view class='xj-btns'>
+    <button 
+      wx:if='{{item.noDelivery}}' 
+      size='mini' 
+      type='primary'
+      class='xj-btn-primary'
+      data-item='{{item}}'
+      bindtap='handleConfirmDelivery'
+    >确认收货</button>
+    <button 
+      wx:if='{{item.noUse}}' 
+      size='mini' 
+      type='primary'
+      class='xj-btn-primary'
+      data-item='{{item}}'
+      bindtap='handleUseQR'
+    >使用二维码</button>
+    <block wx:if='{{item.noPay}}'>
+      <button 
+        class='xj-pay-cancel' 
+        size='mini'
+        class='xj-btn-primary-o'
+        data-item='{{item}}'
+        bindtap='handleCancelOrder'
+      >取消订单</button>
+      <button 
+        class='xj-pay-immediate' 
+        size='mini' 
+        type='primary'
+        class='xj-btn-primary'
+        data-item='{{item}}'
+        bindtap='handlePayImmediately'
+      >立即支付</button>
+    </block>
+    <button 
+      wx:if='{{item.noComment}}' 
+      size='mini' 
+      type='primary'
+      class='xj-btn-primary'
+      data-item='{{item}}'
+      bindtap='handleComment'
+    >发表评价</button>
+    <block wx:if='{{item.noRefund}}'>
+      <button 
+        class='xj-pay-cancel' 
+        size='mini'
+        class='xj-btn-primary-o'
+        data-item='{{item}}'
+        bindtap='handleRefund'
+      >申请退款</button>
+      <button 
+        class='xj-pay-immediate' 
+        size='mini' 
+        type='primary'
+        class='xj-btn-primary'
+        data-item='{{item}}'
+        bindtap='handleService'
+      >申请售后</button>
+    </block>
+  </view>
+</view>

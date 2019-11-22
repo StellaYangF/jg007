@@ -1,0 +1,19 @@
+.xj-tabs {
+  color: #333;
+  background: #fff;
+  font-size: 26rpx;
+  padding: 20rpx 20rpx 0;
+  height: 60rpx;
+  border-bottom: 1rpx solid #ccc;
+}
+
+.xj-tab {
+  margin-right: 40rpx;
+  padding: 20rpx 4rpx 20rpx;
+  margin-bottom: -2rpx;
+}
+
+.xj-tab.active {
+  color: #fe9807;
+  box-shadow: 0 4rpx 0 0 #fe9807;
+}

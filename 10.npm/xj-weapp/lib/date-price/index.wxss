@@ -1,0 +1,91 @@
+.xj-list {
+  display: flex;
+  padding: 63rpx 16rpx 57rpx 16rpx;
+  text-align: center;
+  background: #fff;
+  width: 100vm;
+  overflow: hidden;
+  margin-top: 20rpx;
+  position: relative;
+}
+
+.xj-list-date {
+  position: absolute;
+  top: 19rpx;
+  left: 18rpx;
+  font-size: 24rpx;
+  color: #333;
+}
+
+.xj-item {
+  width: 140rpx;
+  height: 71rpx;
+  font-size: 22rpx;
+  border: 1rpx solid #bfbfbf;
+  border-radius: 10rpx;
+  margin: 8rpx 8rpx 0 0;
+  padding: 6rpx 16rpx;
+  box-sizing: border-box;
+}
+
+.xj-item.active {
+  background: #00a13a;
+}
+
+.xj-item.active .xj-date,
+.xj-item.active .xj-price {
+  color: #fff;
+}
+
+.xj-date {
+  color: #252525;
+}
+
+.xj-price {
+  color: #e36126;
+}
+
+.xj-check-more {
+  position: absolute;
+  top: 20rpx;
+  right: 0;
+  color: #333;
+  padding: 85rpx 17rpx 68rpx 0;
+  background: #fff;
+  width: 131rpx;
+  height: 190rpx;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  font-size: 24rpx;
+}
+
+.icon-img {
+  width:35rpx;
+  height:78rpx;
+  position: relative;
+  left: -14rpx;
+}
+
+.xj-check-text {
+  height: 104rpx;
+  line-height: 50rpx;
+  padding-left: 20rpx;
+  box-shadow: -5rpx 0 10rpx -5rpx #D9DCE3;
+}
+
+.xj-scroll-list {
+  display: flex;
+  height: 226rpx;
+  padding: 20rpx 20rpx 70rpx;
+  align-items: center;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.xj-scroll-list .xj-item {
+  font-size: 22rpx;
+  line-height: 32rpx;
+  padding: 6rpx 0;
+  flex-shrink: 0;
+}

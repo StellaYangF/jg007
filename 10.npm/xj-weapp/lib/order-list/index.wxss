@@ -1,0 +1,41 @@
+.type_item {
+  background: #fff;
+  border-top: 1rpx solid #e5e5e5;
+  font-size: 24rpx;
+  color: #333;
+  padding: 24rpx 16rpx 25rpx 31rpx;
+}
+
+.type_item:last-child {
+  margin-bottom: 20rpx;
+}
+.type_item_right,
+.type_item_right_price {
+  margin-left: 40rpx
+}
+
+.type_item_right_price {
+  color: #e15616;
+}
+
+.custom_van_stepper {
+  font-size: 24rpx !important;
+}
+
+.custom_input {
+  background: transparent !important;
+  font-size: 24rpx !important;
+}
+
+.custom_btn {
+  width: 40rpx !important;
+  height: 40rpx !important;
+  background: transparent !important;
+  border: 1rpx solid #B5B5B5 !important;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

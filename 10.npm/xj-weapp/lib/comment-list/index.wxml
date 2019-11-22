@@ -1,0 +1,48 @@
+<view 
+  class='buyerComment_item custom-class'
+  wx:for='{{list}}'
+  wx:key='{{index}}'
+  hidden='{{hidden}}'>
+
+  <image 
+    src='{{item.img}}'
+    class='buyerComment_item_avatar'
+    wx:if='{{!item.img}}'
+    mode='aspectFill'
+  />
+  <view class='buyerComment_item_right {{item.img ? "" : "ml-0"}}'>
+    <view class='buyerComment_item_name one header-class'>
+      <view class='buyerComment_item_name_title'>{{item.proName}}</view>
+      <!-- <navigator        
+        url='{{item.id}}'
+        custom-class='arrow-icon'>      
+        <van-icon name='arrow'/>
+      </navigator> -->
+      <block wx:if='{{item.id}}'>
+        <view       
+          bindtap='jump'   
+          data-index="{{index}}"
+          data-state= "{{item.isPublish}}"  
+          custom-class='arrow-icon'>
+          <van-icon name='arrow'/>
+        </view>
+      </block>
+      <block wx:else>
+        <view        
+          bindtap='jump'
+          custom-class='arrow-icon'
+          data-index="{{index}}"
+          data-state= "{{item.isPublish}}">         
+          <van-icon name='arrow'/>
+        </view>
+      </block>
+      
+    </view>
+    <view class='buyerComment_item_date pl-4'>{{item.commentTime}}</view>
+    <view class='buyerComment_item_comment pl-4'>
+      <view 
+        class='buyerComment_item_cosmment_content'
+      >{{item.commentDesc}}</view>
+    </view>
+  </view>
+</view>

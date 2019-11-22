@@ -1,0 +1,32 @@
+.xj-submit-bar {
+  background: #fff;
+  height: 96rpx;
+  width: 100%;
+  padding: 37rpx 32rpx;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  font-size:  28rpx;
+  color: #333;
+  justify-content: space-between;
+  z-index: 100;
+}
+
+.xj-price {
+  color: #E60012;
+}
+
+.xj-btn {
+  margin: 0;
+}
+
+.xj-middle {
+  margin-left: 130rpx;
+}
+
+.xj-middle.left {
+  margin-left: 0;
+}

@@ -1,0 +1,51 @@
+.xj-card {
+  margin: 20rpx 0 10rpx;
+}
+
+.xj-card-item {
+  padding: 20rpx 32rpx;
+  display: flex;
+  background: #fff;
+  position: relative;
+}
+
+.xj-card-item.inactive {
+  opacity: .7;
+}
+
+.xj-card-left {
+  width: 140rpx;
+  height: 140rpx;
+  flex-shrink: 0;
+}
+
+.xj-card-right {
+  font-size: 24rpx;
+  color: #333;
+  padding-left: 20rpx;
+}
+
+.xj-card-title {
+  font-size: 26rpx;
+}
+
+.xj-card-info {
+  padding-top: 12rpx;
+}
+
+.xj-item-contianer {
+  position: relative;
+}
+
+.xj-delete-item {
+  position: absolute;
+  right: 40rpx;
+  bottom: 30rpx;
+  color: #f60;
+  border: 2rpx solid #f60;
+  background: #fff;
+  padding: 2rpx 20rpx;
+  font-size: 24rpx;
+  letter-spacing:4rpx;
+  border-radius: 6rpx;
+}

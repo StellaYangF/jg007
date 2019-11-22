@@ -1,0 +1,91 @@
+.xj-card-item {
+  background: #fff;
+  margin: 20rpx 16rpx;
+  padding: 0 16rpx;
+  border-radius: 18rpx;
+  font-size: 24rpx;
+  color: #333;
+  box-shadow: 0 6rpx 20rpx 0 rgba(0, 0, 0, .1);
+}
+
+.xj-card-header, 
+.xj-card-body {
+  display: flex;
+}
+
+.xj-card-header {
+  justify-content: space-between;
+  border-bottom: 1rpx solid #e5e5e5;
+  height: 40rpx;
+  font-size: 20rpx;
+  line-height: 40rpx;
+  color: #666;
+}
+
+.xj-card-header-right {
+  color: #e15616;
+}
+
+.xj-card-body {
+  margin: 20rpx 0;
+}
+
+.xj-card-body-img {
+  width: 160rpx;
+  height: 100rpx;
+}
+
+.xj-card-body-content {
+  position: relative;
+  width: 73%;
+  margin-left: 26rpx;
+}
+
+.xj-card-body-count {
+  position: absolute;
+  right: 0;
+  top: 50%;
+}
+
+.xj-card-body-subtitle {
+  padding-top: 4rpx;
+  font-size: 22rpx;
+}
+
+.xj-card-append {
+  padding-bottom: 20rpx;
+  border-bottom: 1rpx solid #e5e5e5;
+  text-align: right;
+}
+
+.xj-card-append-count {
+  padding-right: 50rpx;
+}
+
+.xj-card-append-sum {
+  font-size: 26rpx;
+  color: #e15616;
+}
+
+.xj-btns {
+  height: 70rpx;
+  text-align: right;
+  padding-top: 10rpx;
+  box-sizing: border-box;
+}
+
+.xj-btn-primary,
+.xj-btn-primary-o {
+  height: 50rpx;
+  line-height: 50rpx !important;
+  font-size: 22rpx !important;
+  padding: 0rpx 10rpx !important;
+  box-sizing: border-box;
+  margin-left: 20rpx;
+}
+
+.xj-btn-primary-o {
+  background: #fff;
+  border: 1rpx solid #1AAD19;
+  color: #1AAD19;
+}

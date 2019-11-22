@@ -1,0 +1,37 @@
+<view 
+  class='xj-card custom-class'
+  hidden='{{hidden}}'
+>
+  <view
+    wx:for='{{list}}'
+    wx:key='{{index}}'
+    class="xj-item-contianer"
+  >
+    <view class='xj-card-item custom-item-class {{ item.isPublish == 1 && "inactive" || "" }}'>
+      <image 
+        src='{{item.imgUrl}}'
+        class='xj-card-left'
+        mode='aspectFill'
+        bindtap='jump'
+        data-index='{{index}}'
+        data-state= "{{item.isPublish}}"
+      />
+      <view class='xj-card-right'>
+        <view class='xj-card-title' bindtap='jump' data-index='{{index}}' data-state= "{{item.isPublish}}">{{item.title}}</view>
+        <view 
+          class='xj-card-info' 
+          wx:if='{{item.subName}}'
+        >{{item.subName}}</view>
+        <view 
+          class='xj-card-info'
+          wx:if='{{item.price}}'
+        >
+        <text class='custom-price-class'>¥ {{item.price}}</text></view>
+      </view>
+    </view>
+     
+    <view class="xj-delete-item" bind:tap='cancel' data-index='{{index}}'>
+      删除
+    </view>
+  </view>
+</view>
