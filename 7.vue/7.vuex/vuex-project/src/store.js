@@ -21,3 +21,11 @@ export default new Vuex.Store({
     }
   }
 });
+
+
+export default function validate(info) {
+  return Promise.resolve(info)
+    .then(checkName)
+    .then(checkPassword)
+    
+}
