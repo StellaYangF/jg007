@@ -1,12 +1,18 @@
 {
-  "name": "10.npm",
-  "version": "1.0.0",
-  "description": "",
+  "name": "xj-weapp",
+  "version": "1.0.1",
+  "description": "Weixin Miniprogram",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "bin": {
+    "xj-weapp": "./bin/www.js"
+  },
+  "author": "Stella",
+  "license": "MIT",
+  "devDependencies": {},
+  "dependencies": {
+    "vant-weapp": "^0.5.23"
+  }
 }
